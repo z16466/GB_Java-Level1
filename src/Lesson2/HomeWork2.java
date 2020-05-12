@@ -38,9 +38,19 @@ public class HomeWork2 {
         System.out.println(checkBalance(array6));
 
         //Вывод 7го задания
-      //  int[] array3 = {4, 7, 11, 0, -128, 127, 2147483647, 9, -5, -8};
-      //  int offset=2;
-      //  moveArrayIndex(array3, offset);
+        int[] array7 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int offset = 3;
+        moveArrayIndex(array7, offset);
+        offset = -3;
+        moveArrayIndex(array7, offset);
+        offset = 0;
+        moveArrayIndex(array7, offset);
+        offset = 9;
+        moveArrayIndex(array7, offset);
+        offset = 22;
+        moveArrayIndex(array7, offset);
+        offset = -22;
+        moveArrayIndex(array7, offset);
     }
 
     /*1. Задать целочисленный массив, состоящий из элементов 0 и 1.
@@ -149,39 +159,41 @@ public class HomeWork2 {
     /*7. **** Написать метод, которому на вход подается одномерный массив
     и число n (может быть положительным, или отрицательным),
     при этом метод должен сместить все элементы массива на n позиций.
-    Для усложнения задачи нельзя пользоваться вспомогательными массивами.
-    public static void moveArrayIndex(int[] array, int offset) {
+    Для усложнения задачи нельзя пользоваться вспомогательными массивами.*/
+    public static void moveArrayIndex(int[] array7, int n) {
         System.out.println("Задание 7");
+        System.out.println("Исходный массив: " + Arrays.toString(array7));
+        int offset, buffer;
 
-             if (shift != 0) {
-// Оптимизируем сдвиг через деление по модулю
-                int finalshift;
-                if (shift > array.length) {
-                    shift = Math.abs(shift % array.length);
-                } else {
-                    finalshift = shift;
+        //Выбор действий в зависимости от числа n.
+        if (n == 0) {
+            //Число n=0, сдвига нет.
+            System.out.println("Сдвига нет - n=" + n + ".");
+        } else if (n > 0) {
+            //Число n - положительное, сдвиг элементов массива на n позиций слева направо.
+            System.out.println("Cдвиг элементов массива на " + n + " позиций слева направо - n=" + n + ".");
+            offset = n % array7.length;
+            for (int i = 1; i <= offset; i++) {
+                buffer = array7[0];
+                array7[0] = array7[array7.length - 1];
+                for (int j = array7.length - 1; j > 1; j--) {
+                    array7[j] = array7[j - 1];
                 }
-// Если + двигаем массив слева направо, если - справа налево.
-                if (shift > 0) {
-                    for (int n = 0; n < shift; n++) {
-// Создаём буфер обмена и убираем туда первый элемент, на его место ставим последний
-                        int buffer = array[0];
-                        myArray[0] = array[array.length - 1];
-// Циклично сдвигаем весь массив
-                        for (int j = 1; j < array.length - 1; j++) {
-                            array[array.length - j] = array[array.length - j - 1];
-                        }
-// Элемент в буффере ставим в первую ячейку
-                        array[1] = buffer;
-                    }
-                } else if (shift < 0) {
-                    for (int i = 0; i > shift; n--) {
-                        int buffer = array[array.length - 1];
-                        array[array.length - 1] = array[0];
-                    }
-                    array[array.length - 2] = buffer;
-                }
+                array7[1] = buffer;
             }
+        } else {
+            //Число n - отрицательное, сдвиг элементов массива на n позиций справа налево.
+                System.out.println("Cдвиг элементов массива на " + -n + " позиций справа налево - n=" + n + ".");
+                offset = (n * (-1)) % array7.length;
+                for (int i = 1; i <= offset; i++) {
+                    buffer = array7[array7.length - 1];
+                    array7[array7.length - 1] = array7[0];
+                    for (int j = 0; j < (array7.length - 2); j++) {
+                        array7[j] = array7[j + 1];
+                    }
+                    array7[array7.length - 2] = buffer;
+                }
         }
-    }*/
+        System.out.println("Смещённый массив: " + Arrays.toString(array7));
+    }
 }
