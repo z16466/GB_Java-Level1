@@ -25,7 +25,7 @@ public class HomeWork3 {
                     System.out.println("Не угадали. Ваше число меньше загаданного.");
                 }
                 else {
-                    System.out.print("Вы угадали! ");
+                    System.out.print("Вы угадали!");
                     break;
                 }
             }
